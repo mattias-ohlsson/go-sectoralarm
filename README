@@ -1,0 +1,30 @@
+    Package sectoralarm
+
+Package sectoralarm implements access to the Sector Alarm API.
+
+  USAGE
+
+  - main.go:
+    package main
+    
+    import (
+	    "fmt"
+    
+	    "github.com/mattias-ohlsson/go-sectoralarm"
+    )
+    
+    func main() {
+	    client, _ := sectoralarm.NewClient("user@example.org", "password")
+	    client.Login()
+    
+	    panels, _ := client.GetPanelList()
+    
+	    for _, panel := range panels {
+    
+		    temperatures, _ := client.GetTemperatures(panel.PanelID)
+    
+		    for _, temperature := range temperatures {
+			    fmt.Println(temperature.Label, temperature.Temperature)
+		    }
+	    }
+    }
