@@ -137,7 +137,7 @@ func getVersion() (string, error) {
 
 	body, err := ioutil.ReadAll(resp.Body)
 
-	r := regexp.MustCompile(`"/Scripts/main.js\?([v0-9_]*)"`)
+	r := regexp.MustCompile(`"/Scripts/main.js\?(v[A-Z0-9_]*)"`)
 
 	match := r.FindStringSubmatch(string(body))
 	if len(match) < 2 {
